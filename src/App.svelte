@@ -1,4 +1,6 @@
 <script>
+  import StoryOne from "./components/StoryOne.svelte";
+
   let currentPage = 0;
 
   function handleScroll() {
