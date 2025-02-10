@@ -1,5 +1,6 @@
 <script>
-  import StoryOne from "./components/StoryOne.svelte";
+  import StoryOneTitle from "./components/StoryOneTitle.svelte";
+  import StoryTwoTitle from "./components/StoryTwoTitle.svelte";
 
   let currentPage = 0;
 
@@ -22,10 +23,7 @@
   <div class="main-container">
     <div class="story-one">
       <div class="main-story-one">
-        <div class="title">
-          <h2>How Same Or Different Are We</h2>
-          <p>By Vaishali Verma</p>
-        </div>
+        <StoryOneTitle />
       </div>
       <div class="button-of-story-one">
         <button
@@ -47,10 +45,11 @@
         >
       </div>
       <div class="main-story-two">
-        <div class="title">
+        <StoryTwoTitle />
+        <!-- <div class="title">
           <h2>How Same Or Different Are Humans</h2>
           <p>By ChatGPT and Claude</p>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -98,13 +97,5 @@
   #unstyled-button-two {
     margin-left: 12rem;
     position: absolute;
-  }
-  .title {
-    border: 3px solid blue;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
   }
 </style>
