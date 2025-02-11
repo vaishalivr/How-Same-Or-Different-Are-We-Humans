@@ -1730,3 +1730,27 @@ const fanData = [
     ],
   ],
 ];
+
+export default {
+  houseData,
+  monaLisaData,
+  tornadoData,
+  beardData,
+  cookieData,
+  flowerData,
+  blackberryData,
+  greatWallData,
+  seesawData,
+  soccerBallData,
+  skyscraperData,
+  stitchesData,
+  teapotData,
+  toothData,
+  squareData,
+  seaTurtleData,
+  snowmanData,
+  eiffelTowerData,
+  stethoscopeData,
+  rifleData,
+  fanData,
+};
