@@ -1,6 +1,11 @@
 <script>
   import titleDrawingsData from "../lib/data/titleDrawingsData.js";
-  const drawings = Object.values(titleDrawingsData);
+  let baseDrawings = Object.values(titleDrawingsData);
+  let requiredDrawings = 84;
+  let drawings = Array.from(
+    { length: requiredDrawings },
+    (_, i) => baseDrawings[i % baseDrawings.length]
+  );
 
   let screenWidth = window.innerWidth;
   let numColumns = screenWidth > 768 ? 12 : 5;
@@ -14,9 +19,16 @@
     svgHeight: numRows * spacing,
     rectHighlightStrokeWidth: 3,
   };
+
+  function createPath(stroke) {
+    const [xPoints, yPoints] = stroke;
+    return xPoints
+      .map((x, i) => `${i === 0 ? "M" : "L"} ${x},${yPoints[i]}`)
+      .join(" ");
+  }
 </script>
 
-<div class="title">
+<div class="title-container">
   <svg
     width="100%"
     height="100%"
@@ -35,13 +47,31 @@
         {/each}
       {/each}
     </g>
+
+    <g fill="none" stroke="black" stroke-width="2">
+      {#each drawings as drawing, index}
+        {#if index < titleGrid.numCols * titleGrid.numRows}
+          <g
+            transform="translate({(index % titleGrid.numCols) *
+              titleGrid.spacing +
+              titleGrid.spacing / 8}, 
+              {Math.floor(index / titleGrid.numCols) * titleGrid.spacing +
+              titleGrid.spacing / 8}) 
+        scale(0.3)"
+          >
+            {#each drawing as stroke}
+              <path d={createPath(stroke)} />
+            {/each}
+          </g>{/if}
+      {/each}
+    </g>
   </svg>
 
   <p>How Same or Different Are We</p>
 </div>
 
 <style>
-  .title {
+  .title-container {
     height: 100vh;
   }
 

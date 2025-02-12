@@ -92,10 +92,19 @@
     padding: 1rem;
   }
   #unstyled-button-one {
-    margin-left: -12rem;
+    margin-left: -16rem;
   }
   #unstyled-button-two {
     margin-left: 12rem;
     position: absolute;
+  }
+  @media (max-width: 768px) {
+    .unstyled-button {
+      padding: 0.25rem;
+    }
+    #unstyled-button-one {
+      margin-left: -3rem;
+      font-size: 0.75rem;
+    }
   }
 </style>
