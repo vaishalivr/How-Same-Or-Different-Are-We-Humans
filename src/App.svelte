@@ -1,6 +1,7 @@
 <script>
   import StoryOneTitle from "./components/StoryOneTitle.svelte";
   import StoryTwoTitle from "./components/StoryTwoTitle.svelte";
+  import StoryOneText from "./components/StoryOneText.svelte";
 
   let currentPage = 0;
 
@@ -24,6 +25,7 @@
     <div class="story-one">
       <div class="main-story-one">
         <StoryOneTitle />
+        <StoryOneText />
       </div>
       <div class="button-of-story-one">
         <button
@@ -46,10 +48,7 @@
       </div>
       <div class="main-story-two">
         <StoryTwoTitle />
-        <!-- <div class="title">
-          <h2>How Same Or Different Are Humans</h2>
-          <p>By ChatGPT and Claude</p>
-        </div> -->
+        <h2>How Same or Different Are Humans</h2>
       </div>
     </div>
   </div>
@@ -67,12 +66,11 @@
   .story-one,
   .story-two {
     width: 50%;
-    border: 1px solid red;
     display: flex;
   }
   .main-story-one,
   .main-story-two {
-    width: 85%;
+    width: 90%;
   }
   .button-of-story-one,
   .button-of-story-two {
