@@ -1,39 +1,58 @@
 <script>
   import titleDrawingsData from "../lib/data/titleDrawingsData.js";
-  const { houseData } = titleDrawingsData;
+  const drawings = Object.values(titleDrawingsData);
 
-  function createPath(stroke) {
-    const [xPoints, yPoints] = stroke;
-    const pathString = xPoints
-      .map((x, i) => `${i === 0 ? "M" : "L"} ${x},${yPoints[i]}`)
-      .join(" ");
-    console.log(pathString);
-    return pathString;
-  }
+  let screenWidth = window.innerWidth;
+  let numColumns = screenWidth > 768 ? 12 : 5;
+  let numRows = screenWidth > 768 ? 7 : 12;
+  let spacing = 100;
+  let titleGrid = {
+    spacing: spacing,
+    numRows: numRows,
+    numCols: numColumns,
+    svgWidth: numColumns * spacing,
+    svgHeight: numRows * spacing,
+    rectHighlightStrokeWidth: 3,
+  };
 </script>
 
 <div class="title">
-  <svg width="100%" height="100%">
-    <text x="50%" y="40%" text-anchor="middle">
-      <tspan x="50%" dy="0em">How</tspan>
-      <tspan x="50%" dy="1.2em">Same or Different</tspan>
-      <tspan x="50%" dy="1.2em">Are We</tspan>
-      <tspan x="50%" dy="3em">By Vaishali Verma</tspan>
-    </text>
-
-    <g fill="none" stroke="black" stroke-width="2" transform="scale(0.5)">
-      {#each houseData as stroke}
-        <path d={createPath(stroke)} />
+  <svg
+    width="100%"
+    height="100%"
+    viewBox="0 0 {titleGrid.svgWidth} {titleGrid.svgHeight}"
+  >
+    <g fill="none" stroke="lightgray" stroke-width="1">
+      {#each Array(titleGrid.numRows) as _, row}
+        {#each Array(titleGrid.numCols) as _, col}
+          <rect
+            x={col * titleGrid.spacing + titleGrid.rectHighlightStrokeWidth / 2}
+            y={row * titleGrid.spacing + titleGrid.rectHighlightStrokeWidth / 2}
+            width={titleGrid.spacing - titleGrid.rectHighlightStrokeWidth}
+            height={titleGrid.spacing - titleGrid.rectHighlightStrokeWidth}
+            class="grid-cell"
+          />
+        {/each}
       {/each}
     </g>
   </svg>
+
+  <p>How Same or Different Are We</p>
 </div>
 
 <style>
   .title {
     height: 100vh;
   }
-  svg text {
-    font-size: 2vw;
+
+  .grid-cell {
+    fill: white;
+    stroke-width: 0.9;
+    stroke: yellowgreen;
+    transition: fill 0.5s ease-in-out;
+  }
+
+  .grid-cell:hover {
+    stroke-width: 3;
   }
 </style>
