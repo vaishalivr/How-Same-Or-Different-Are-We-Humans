@@ -66,8 +66,6 @@
       {/each}
     </g>
   </svg>
-
-  <p>How Same or Different Are We</p>
 </div>
 
 <style>
