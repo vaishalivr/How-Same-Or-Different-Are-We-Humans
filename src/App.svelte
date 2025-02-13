@@ -2,6 +2,7 @@
   import StoryOneTitle from "./components/StoryOneTitle.svelte";
   import StoryTwoTitle from "./components/StoryTwoTitle.svelte";
   import StoryOneText from "./components/StoryOneText.svelte";
+  import StoryTwoText from "./components/StoryTwoText.svelte";
 
   let currentPage = 0;
 
@@ -36,6 +37,7 @@
         </button>
       </div>
     </div>
+
     <div class="story-two">
       <div class="button-of-story-two">
         <button
@@ -48,7 +50,7 @@
       </div>
       <div class="main-story-two">
         <StoryTwoTitle />
-        <h2>How Same or Different Are Humans</h2>
+        <StoryTwoText />
       </div>
     </div>
   </div>
@@ -71,10 +73,15 @@
   .main-story-one,
   .main-story-two {
     width: 90%;
+    overflow-y: auto;
   }
   .button-of-story-one,
   .button-of-story-two {
     flex: 1;
+    /* position: fixed; */
+    height: 100vh;
+    right: 0;
+    top: 0;
     border: 1px solid black;
     display: flex;
     justify-content: center;
