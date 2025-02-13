@@ -11,7 +11,6 @@
   .title {
     height: 100vh;
     width: 100vw;
-    border: 3px solid blue;
     display: flex;
     align-items: center;
     justify-content: center;

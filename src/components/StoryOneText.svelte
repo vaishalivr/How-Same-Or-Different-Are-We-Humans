@@ -23,8 +23,24 @@
       Or a leaf in Canada may not be the same leaf that most people think of.
     </p>
     <p>
-      In this story, you'll find yourself among people whose mental images of a
-      word may differ from your own.
+      In this story, you'll find yourself among unknown people whose mental
+      images of a word may differ from your own.
+    </p>
+    <p>
+      I met them in a data set called Google Quick Draw, a dataset made public
+      by Google in 2017 about its online game Quick Draw in which the user has
+      20 seconds to draw to prompts like apple and zigzag. It's fun but the real
+      aim of this game is to use these sketches to teach AI about how humans
+      draw.
+    </p>
+    <p>
+      With a bigger view of the world you will know that the images you hold in
+      your mind for a certain word is simply linked to the geography and the
+      kind of upbringing you have had.
+    </p>
+    <p>
+      Take a look at the various things that can come to a person's mind when
+      encountered with a word.
     </p>
   </div>
 </div>
