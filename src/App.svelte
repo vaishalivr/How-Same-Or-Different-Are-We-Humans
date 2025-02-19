@@ -3,58 +3,54 @@
   import StoryTwoTitle from "./components/StoryTwoTitle.svelte";
   import StoryOneText from "./components/StoryOneText.svelte";
   import StoryTwoText from "./components/StoryTwoText.svelte";
+  import StoryOneSvgOne from "./components/StoryOneSvgOne.svelte";
 
   let currentPage = 0;
 
   function handleScroll() {
     currentPage += 1;
-    //const mainContainer = document.querySelector(".main-container");
-    //mainContainer.style.transform = `translateX(-${currentPage * 100}vw)`;
   }
 
   function handleScrollBack() {
     if (currentPage > 0) {
       currentPage -= 1;
-      //const mainContainer = document.querySelector(".main-container");
-      //mainContainer.style.transform = `translateX(-${currentPage * 100}vw)`;
     }
   }
 </script>
 
-<main>
-  <div class="main-container" class:scrolled={currentPage === 1}>
-    <div class="story-one">
-      <div class="main-story-one">
-        <StoryOneTitle />
-        <StoryOneText />
-      </div>
-      <div class="button-of-story-one">
-        <button
-          on:click={handleScroll}
-          class="unstyled-button"
-          id="unstyled-button-one"
-          >Read AI's Story
-        </button>
-      </div>
+<div class="main-container" class:scrolled={currentPage === 1}>
+  <div class="story-one">
+    <div class="main-story-one">
+      <StoryOneTitle />
+      <StoryOneText />
+      <StoryOneSvgOne />
     </div>
-
-    <div class="story-two">
-      <div class="button-of-story-two">
-        <button
-          on:click={handleScrollBack}
-          class="unstyled-button"
-          id="unstyled-button-two"
-        >
-          Go Back to Mine</button
-        >
-      </div>
-      <div class="main-story-two">
-        <StoryTwoTitle />
-        <StoryTwoText />
-      </div>
+    <div class="button-of-story-one">
+      <button
+        on:click={handleScroll}
+        class="unstyled-button"
+        id="unstyled-button-one"
+        >Read AI's Story
+      </button>
     </div>
   </div>
-</main>
+
+  <div class="story-two">
+    <div class="button-of-story-two">
+      <button
+        on:click={handleScrollBack}
+        class="unstyled-button"
+        id="unstyled-button-two"
+      >
+        Go Back to Mine</button
+      >
+    </div>
+    <div class="main-story-two">
+      <StoryTwoTitle />
+      <StoryTwoText />
+    </div>
+  </div>
+</div>
 
 <style>
   .main-container {
