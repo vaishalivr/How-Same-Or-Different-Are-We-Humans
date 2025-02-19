@@ -8,21 +8,21 @@
 
   function handleScroll() {
     currentPage += 1;
-    const mainContainer = document.querySelector(".main-container");
-    mainContainer.style.transform = `translateX(-${currentPage * 100}vw)`;
+    //const mainContainer = document.querySelector(".main-container");
+    //mainContainer.style.transform = `translateX(-${currentPage * 100}vw)`;
   }
 
   function handleScrollBack() {
     if (currentPage > 0) {
       currentPage -= 1;
-      const mainContainer = document.querySelector(".main-container");
-      mainContainer.style.transform = `translateX(-${currentPage * 100}vw)`;
+      //const mainContainer = document.querySelector(".main-container");
+      //mainContainer.style.transform = `translateX(-${currentPage * 100}vw)`;
     }
   }
 </script>
 
 <main>
-  <div class="main-container">
+  <div class="main-container" class:scrolled={currentPage === 1}>
     <div class="story-one">
       <div class="main-story-one">
         <StoryOneTitle />
@@ -64,6 +64,9 @@
     overflow-x: hidden;
     transform: translateX(0);
     transition: transform 0.5s ease;
+  }
+  .main-container.scrolled {
+    transform: translateX(-100vw);
   }
   .story-one,
   .story-two {
