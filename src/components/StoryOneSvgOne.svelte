@@ -1,9 +1,62 @@
 <script>
   let sentences = [
-    { text: "night sky at 4pm", x: 150, y: 150, rotation: -20, fill: 0.45 },
-    { text: "hello world", x: 500, y: 400, rotation: -25, fill: 0.6 },
-    { text: "Svelte is awesome", x: 500, y: 150, rotation: 10, fill: 0.75 },
-    { text: "dynamic rotation", x: 200, y: 500, rotation: 20, fill: 1 },
+    { text: "night sky past 4pm", x: 150, y: 150, rotation: -20, fill: 0.45 },
+    {
+      text: "seeing snow on some mornings",
+      x: 800,
+      y: 100,
+      rotation: 25,
+      fill: 0.6,
+    },
+    {
+      text: "woodern floored bathrooms",
+      x: 600,
+      y: 150,
+      rotation: 10,
+      fill: 0.75,
+    },
+    {
+      text: "freezing despite the sun shining",
+      x: 350,
+      y: 250,
+      rotation: 20,
+      fill: 1,
+    },
+    {
+      text: "clothes dryer in every house",
+      x: 200,
+      y: 360,
+      rotation: -20,
+      fill: 1,
+    },
+    {
+      text: "different units of measurements",
+      x: 300,
+      y: 500,
+      rotation: -20,
+      fill: 1,
+    },
+    {
+      text: "drinking water directly from kitchen tap",
+      x: 300,
+      y: 500,
+      rotation: -20,
+      fill: 1,
+    },
+    {
+      text: "kids playing indoor after school",
+      x: 800,
+      y: 300,
+      rotation: 20,
+      fill: 1,
+    },
+    {
+      text: "Boston Celtics, Boston Bruins, New England Patriots",
+      x: 600,
+      y: 520,
+      rotation: -10,
+      fill: 1,
+    },
   ];
 
   import { onMount } from "svelte";
@@ -48,7 +101,7 @@
           {y}
           alignment-baseline="middle"
           text-anchor="middle"
-          font-size="1rem"
+          font-size="0.6rem"
           fill="black"
         >
           {text}
@@ -57,3 +110,12 @@
     {/each}
   </svg>
 </div>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap");
+  text {
+    font-family: "Caveat", cursive;
+    font-size: 30px;
+    fill: black;
+  }
+</style>
