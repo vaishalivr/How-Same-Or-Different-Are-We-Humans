@@ -1,5 +1,5 @@
 <script>
-  import titleDrawingsData from "../lib/data/titleDrawingsData.js";
+  import titleDrawingsData from "../../lib/data/titleDrawingsData.js";
   let baseDrawings = Object.values(titleDrawingsData);
   let requiredDrawings = 84;
   let drawings = Array.from(
