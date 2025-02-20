@@ -1,9 +1,9 @@
 <script>
-  import StoryOneTitle from "./components/StoryOneTitle.svelte";
-  import StoryTwoTitle from "./components/StoryTwoTitle.svelte";
-  import StoryOneText from "./components/StoryOneText.svelte";
-  import StoryTwoText from "./components/StoryTwoText.svelte";
-  import StoryOneSvgOne from "./components/StoryOneSvgOne.svelte";
+  import StoryOneTitle from "./components/storyOne/StoryOneTitle.svelte";
+  import StoryTwoTitle from "./components/storyTwo/StoryTwoTitle.svelte";
+  import StoryOneText from "./components/storyOne/StoryOneText.svelte";
+  import StoryTwoText from "./components/storyTwo/StoryTwoText.svelte";
+  import StoryOneSvgOne from "./components/storyOne/StoryOneSvgOne.svelte";
 
   let currentPage = 0;
 
