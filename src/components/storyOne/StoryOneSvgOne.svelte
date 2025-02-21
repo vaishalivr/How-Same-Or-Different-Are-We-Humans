@@ -29,9 +29,7 @@
 <div style="width: 60%; margin:0 auto">
   <svg width="100%" {height}>
     <rect width="100%" {height} stroke="black" stroke-width="2" fill="none" />
-    <defs>
-      <mask id="fillMask"></mask>
-    </defs>
+
     {#each sentences as { text, x, y, rotation }, index}
       <g transform={`rotate(${rotation} ${x} ${y})`}>
         <rect bind:this={rectElement} id="rect-{index}" fill="yellow"></rect>
