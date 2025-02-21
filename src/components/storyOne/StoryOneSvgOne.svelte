@@ -49,31 +49,31 @@
   ];
 </script>
 
-{#each svgClasses as { className, height, fill }}
-  <div
-    bind:this={svgContainer}
-    class="svg-container {className}"
-    style="width: 60%; margin:0 auto"
-  >
-    <svg width="100%" {height}>
-      <rect width="100%" {height} stroke="black" stroke-width="2" {fill} />
-      {#each sentences as { text, x, y, rotation }, index}
-        <g transform={`rotate(${rotation} ${x} ${y})`}>
-          <rect bind:this={rectElement} id="rect-{index}" fill="yellow"></rect>
-          <text
-            bind:this={textElement}
-            id="text-{index}"
-            {x}
-            {y}
-            alignment-baseline="middle"
-          >
-            {text}
-          </text>
-        </g>
-      {/each}
-    </svg>
-  </div>
-{/each}
+
+<div style="width: 60%; margin:0 auto">
+  <svg width="100%" {height}>
+    <rect width="100%" {height} stroke="black" stroke-width="2" fill="none" />
+
+    {#each sentences as { text, x, y, rotation }, index}
+      <g transform={`rotate(${rotation} ${x} ${y})`}>
+        <rect bind:this={rectElement} id="rect-{index}" fill="yellow"></rect>
+        <text
+          bind:this={textElement}
+          id="text-{index}"
+          {x}
+          {y}
+          alignment-baseline="middle"
+          text-anchor="middle"
+          font-size="0.6rem"
+          fill="black"
+        >
+          {text}
+        </text>
+      </g>
+    {/each}
+  </svg>
+</div>
+
 
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap");
