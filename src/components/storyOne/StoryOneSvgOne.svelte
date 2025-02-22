@@ -10,13 +10,10 @@
     const width = window.innerWidth;
     if (width > 1024) {
       screenWidth = "large";
-      screenHeight = 300;
     } else if (width >= 768 && width <= 1024) {
       screenWidth = "medium";
-      screenHeight = 400;
     } else {
       screenWidth = "small";
-      screenHeight = 500;
     }
   };
 
@@ -34,7 +31,7 @@
 </script>
 
 <div class="svg-container svg-large" style="margin: 0 auto; width: 60%;">
-  <svg width="100%" height={screenHeight}>
+  <svg width="100%" height="300">
     <rect width="100%" height="100%" fill="orange" stroke="black" />
     {#each sentences as { text, position, rotation }, index}
       <g
@@ -64,7 +61,7 @@
 </div>
 
 <div class="svg-container svg-medium" style="margin: 0 auto; width: 60%;">
-  <svg width="100%" height={screenHeight}>
+  <svg width="100%" height="400">
     <rect width="100%" height="100%" fill="none" stroke="black" />
     {#each sentences as { text, position, rotation }, index}
       <g
@@ -94,7 +91,7 @@
 </div>
 
 <div class="svg-container svg-small" style="margin: 0 auto; width: 60%;">
-  <svg width="100%" height={screenHeight}>
+  <svg width="100%" height="500">
     <rect width="100%" height="100%" fill="yellow" stroke="black" />
     {#each sentences as { text, position, rotation }, index}
       <g
