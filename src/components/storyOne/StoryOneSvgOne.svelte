@@ -1,71 +1,60 @@
 <script>
   import { onMount } from "svelte";
   import sentences from "../../lib/data/sentencesData.js";
-
-  let height = 600;
-  let textElement;
-  let rectElement;
-  let svgContainer;
-  let screenSize;
-  let bbPadding = 8;
-
-  function getBoundingBox(textElement, rectElement, fillRatio) {
-    if (textElement && rectElement) {
-      const bbox = textElement.getBBox();
-      rectElement.setAttribute("x", bbox.x - bbPadding / 2);
-      rectElement.setAttribute("y", bbox.y - bbPadding / 2);
-      rectElement.setAttribute("width", fillRatio * (bbox.width + bbPadding));
-      rectElement.setAttribute("height", bbox.height + bbPadding);
-    }
-  }
+  let textElement = [];
+  let rectElement = [];
+  let screenWidth;
+  let screenHeight;
 
   const updateScreenSize = () => {
-    if (window.innerWidth < 768) {
-      screenSize = "small";
-    } else if (window.innerWidth >= 768 && window.innerWidth <= 1024) {
-      screenSize = "medium";
+    const width = window.innerWidth;
+    if (width > 1024) {
+      screenWidth = "large";
+      screenHeight = 300;
+    } else if (width >= 768 && width <= 1024) {
+      screenWidth = "medium";
+      screenHeight = 400;
     } else {
-      screenSize = "large";
+      screenWidth = "small";
+      screenHeight = 500;
     }
   };
 
   onMount(() => {
     updateScreenSize();
-    window.addEventListener("resize", updateScreenSize);
 
-    sentences.forEach((sentence, index) => {
-      const rectElement = document.getElementById(`rect-${index}`);
-      const textElement = document.getElementById(`text-${index}`);
-      getBoundingBox(textElement, rectElement, sentence.fill);
+    textElement.forEach((element, index) => {
+      const bbox = element.getBBox();
+      rectElement[index].setAttribute("x", bbox.x);
+      rectElement[index].setAttribute("y", bbox.y);
+      rectElement[index].setAttribute("width", bbox.width);
+      rectElement[index].setAttribute("height", bbox.height);
     });
-
-    return () => window.removeEventListener("resize", updateScreenSize);
   });
-
-  let svgClasses = [
-    { className: "svg-small", height: "600", fill: "green" },
-    { className: "svg-medium", height: "500", fill: "yellow" },
-    { className: "svg-large", height: "400", fill: "green" },
-  ];
 </script>
 
-
-<div style="width: 60%; margin:0 auto">
-  <svg width="100%" {height}>
-    <rect width="100%" {height} stroke="black" stroke-width="2" fill="none" />
-
-    {#each sentences as { text, x, y, rotation }, index}
-      <g transform={`rotate(${rotation} ${x} ${y})`}>
-        <rect bind:this={rectElement} id="rect-{index}" fill="yellow"></rect>
+<div class="svg-container svg-large" style="margin: 0 auto; width: 60%;">
+  <svg width="100%" height={screenHeight}>
+    <rect width="100%" height="100%" fill="orange" stroke="black" />
+    {#each sentences as { text, position, rotation }, index}
+      <g
+        transform={`rotate(${rotation}, ${position["large"].x}, ${position["large"].y})`}
+      >
+        <rect
+          bind:this={rectElement[index]}
+          id={`rect-${index}`}
+          fill="none"
+          stroke="black"
+        />
         <text
-          bind:this={textElement}
-          id="text-{index}"
-          {x}
-          {y}
+          bind:this={textElement[index]}
+          id={`text-${index}`}
+          x={position["large"].x}
+          y={position["large"].y}
           alignment-baseline="middle"
           text-anchor="middle"
-          font-size="0.6rem"
           fill="black"
+          font-size="12"
         >
           {text}
         </text>
@@ -74,34 +63,85 @@
   </svg>
 </div>
 
+<div class="svg-container svg-medium" style="margin: 0 auto; width: 60%;">
+  <svg width="100%" height={screenHeight}>
+    <rect width="100%" height="100%" fill="none" stroke="black" />
+    {#each sentences as { text, position, rotation }, index}
+      <g
+        transform={`rotate(${rotation}, ${position["medium"].x}, ${position["medium"].y})`}
+      >
+        <rect
+          bind:this={rectElement[index]}
+          id={`rect-${index}`}
+          fill="none"
+          stroke="black"
+        />
+        <text
+          bind:this={textElement[index]}
+          id={`text-${index}`}
+          x={position["medium"].x}
+          y={position["medium"].y}
+          alignment-baseline="middle"
+          text-anchor="middle"
+          fill="black"
+          font-size="12"
+        >
+          {text}
+        </text>
+      </g>
+    {/each}
+  </svg>
+</div>
+
+<div class="svg-container svg-small" style="margin: 0 auto; width: 60%;">
+  <svg width="100%" height={screenHeight}>
+    <rect width="100%" height="100%" fill="yellow" stroke="black" />
+    {#each sentences as { text, position, rotation }, index}
+      <g
+        transform={`rotate(${rotation}, ${position["small"].x}, ${position["small"].y})`}
+      >
+        <rect
+          bind:this={rectElement[index]}
+          id={`rect-${index}`}
+          fill="none"
+          stroke="black"
+        />
+        <text
+          bind:this={textElement[index]}
+          id={`text-${index}`}
+          x={position["small"].x}
+          y={position["small"].y}
+          alignment-baseline="middle"
+          text-anchor="middle"
+          fill="black"
+          font-size="12"
+        >
+          {text}
+        </text>
+      </g>
+    {/each}
+  </svg>
+</div>
 
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap");
-  text {
-    font-family: "Caveat", cursive;
-    fill: black;
-    font-size: 1.5rem;
-    text-anchor: middle;
-  }
-
   .svg-container {
     display: none;
   }
 
   @media (min-width: 1024px) {
-    .svg-large {
+    .svg-container.svg-large {
       display: block;
     }
   }
 
   @media (min-width: 768px) and (max-width: 1024px) {
-    .svg-medium {
+    .svg-container.svg-medium {
       display: block;
     }
   }
 
-  @media (max-width: 768px) {
-    .svg-small {
+  @media (max-width: 767px) {
+    .svg-container.svg-small {
       display: block;
     }
   }
